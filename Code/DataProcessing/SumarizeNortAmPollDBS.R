@@ -60,4 +60,4 @@ NPDBAgg <- data.frame(NPDB[,c("ID1","SITENAME","LONDD","LATDD","ELEVATION")],
                       BIOME  = BiomesNames$Name[c(match(BiomeNPD[,2],BiomesNames$code))],
                       SummNPDB3)
 
-write.csv(NPDBAgg[BiomeNPD$BIOME,],"./Data/Pollen/Processed/NPDBAgg.csv")
+write.csv(NPDBAgg[BiomeNPD$BIOME,],"./Data/Pollen/Processed/NPDB_Agg.csv")
