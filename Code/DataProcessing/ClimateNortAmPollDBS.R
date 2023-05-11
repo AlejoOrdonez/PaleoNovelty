@@ -125,7 +125,7 @@ names(NPDB.Clim)[-1] <- c(paste0("BslTempMn.",c("Sprg","Summ","Fall","Wint")),
                           paste0("BslTempSd.",c("Sprg","Summ","Fall","Wint")),
                           paste0("BslPrecMn.",c("Sprg","Summ","Fall","Wint")),
                           paste0("BslPrecSd.",c("Sprg","Summ","Fall","Wint")))
-NPDB.Clim <- data.frame(NPDB[,c("SITE", "DBCODE", "SITECODE", "SITENAME", "LONDD", "LATDD")],
+NPDB.Clim <- data.frame(NPDB[,c("ID1","SITE", "DBCODE", "SITECODE", "SITENAME", "LONDD", "LATDD")],
                         NPDB.Clim)
 
 # Save the CRU.TS climate for the North American Pollen Data Base
