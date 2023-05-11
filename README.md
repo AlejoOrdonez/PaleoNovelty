@@ -1,2 +1,2 @@
 # PaleoNovelty
-Assessing novelty in climate, taxomic, functional, and phylogenetic sapaces.
+Assessing novelty in climate, taxonomic, functional, and phylogeny spaces.
