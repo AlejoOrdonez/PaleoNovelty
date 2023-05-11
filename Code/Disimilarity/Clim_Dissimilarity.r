@@ -96,19 +96,16 @@ FullPaleoStdEucDis <- (PaleoTempStdEucDis+PaleoTempStdEucDis)^0.5
 colnames(FullPaleoStdEucDis) <- (NEATOMA.Clim$sites)
 rownames(FullPaleoStdEucDis) <- NPDB.Clim$SITECODE
 
-
-
-dimnames(FullPaleoStdEucDis)
-
 # Estimate the Min Distance to present for each Neatoma site
 NEATOMA.Clim$minSESClim <- as.numeric(apply(FullPaleoStdEucDis,2,min))
 
 
-# Save the climate dissimilarity ouptut
+# Save the climate dissimilarity output
 NEATOMA.ClimDis <- list(FullDisMatrix = FullPaleoStdEucDis,
                         NEATOMA.ClimDis = NEATOMA.Clim[,-c(1,8:15)],
                         NEATOMA.Clim = NEATOMA.Clim,
-                        NPDB.Clim = NPDB.Clim)
+                        NPDB.Clim = NPDB.Clim,
+                        ROC.Cutoff = EnvTreshold.ROC)
 saveRDS(NEATOMA.ClimDis,"./Results/StdEuDis_ClimDis.rds")
 
 
