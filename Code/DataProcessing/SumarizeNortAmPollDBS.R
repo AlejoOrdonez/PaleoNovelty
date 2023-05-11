@@ -22,12 +22,20 @@ SummNPDB <- lapply(TaxaUse, # only use species with trait data (Woody species)
                    })
 names(SummNPDB) <- TaxaUse
 SummNPDB2 <- as.data.frame(do.call("cbind",SummNPDB))
+SummNPDB2 <- SummNPDB2[which(!is.na(apply(SummNPDB2,1,sum))),]
+
+# Re-scale NPDS so pollen counts add up to 1
 SummNPDB3 <- as.data.frame(t(apply(SummNPDB2,1,function(x){x/sum(x,na.rm=T)})))
-SummNPDB3[is.na(SummNPDB3)] <- 0
+# Make 0 the pollen count for taxa with percentages below 5%
+SummNPDB3 <-  as.data.frame(t(apply(SummNPDB3,1,function(x){ifelse(x>0.05,x,0)})))
+# Aggregate to taxa with data 
+SummNPDB3 <-  as.data.frame(t(apply(SummNPDB3,1,function(x){x/sum(x,na.rm=T)})))
+# Remove taxa not sampled in any site
+SummNPDB3 <- SummNPDB3[,apply(SummNPDB3,2,sum)!=0]
 
 # Add the Biome for each observation
 # Make the locations a SpatVector
-NPDBVect <- vect(NPDB[,c("LONDD", "LATDD")],
+NPDBVect <- vect(NPDB[which(!is.na(apply(SummNPDB2,1,sum))),c("LONDD", "LATDD")],
                  geom=c("LONDD", "LATDD"),
                  crs = "EPSG:4326")
 
@@ -56,8 +64,10 @@ BiomeNPD <- extract(BIOMES[,"BIOME"],
 BiomeNPD$BIOME[c(is.na(BiomeNPD$BIOME))] <- 100
 
 # Create a new aggregated North American Pollen Data Base
-NPDBAgg <- data.frame(NPDB[,c("ID1","SITENAME","LONDD","LATDD","ELEVATION")],
+NPDBAgg <- data.frame(NPDB[which(!is.na(apply(SummNPDB2,1,sum))),c("ID1","SITENAME","LONDD","LATDD","ELEVATION")],
                       BIOME  = BiomesNames$Name[c(match(BiomeNPD[,2],BiomesNames$code))],
                       SummNPDB3)
-
-write.csv(NPDBAgg[BiomeNPD$BIOME,],"./Data/Pollen/Processed/NPDB_Agg.csv")
+# Remove the sites located in Rock/ice, Lake/River, or Ocean.
+NPDBAgg <- NPDBAgg[BiomeNPD$BIOME<15,]
+# Save the Location data
+write.csv(NPDBAgg,"./Data/Pollen/Processed/NPDB_Agg.csv")

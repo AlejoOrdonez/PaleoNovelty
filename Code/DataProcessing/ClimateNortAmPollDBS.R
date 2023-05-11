@@ -13,7 +13,7 @@ NPDBVect <- vect(NPDB[,c("LONDD", "LATDD")],
 #####
 
 #####
-# Load Present Monty Temperature from Lorentz downscale and Avg over the BAsline period 1960-1990
+# Load Present Monty Temperature from Lorentz downscale and Avg over the Baseline period 1960-1990
 ## 0akBP (band 2201) is 1950AD and it goes until 1990AD (band 2204)
 Temp.Seson.Bsl.List <- lapply(which((-2200:3)%in%c(1:3)),
                               function(j){
@@ -65,7 +65,7 @@ names(SDTempNPD) <- c("ID",paste0("Sd.",c("Sprg","Summ","Fall","Wint")))
 #####
 
 #####
-# Load Present Seasonal Precipitation from Lorentz downscale
+# Load Present Seasonal Precipitation from Lorentz downscale and Avg over the Baseline period 1960-1990
 ## 0akBP (band 2201) is 1950AD and it goes until 1990AD (band 2204)
 Prec.Seson.Bsl.List <- lapply(which((-2200:3)%in%c(1:3)),
                               function(j){
@@ -115,7 +115,7 @@ names(SDPrecNPD) <- c("ID",paste0("Sd.",c("Sprg","Summ","Fall","Wint")))
 #####
 
 #####
-# Get summary values for the Monlty and Seasonal Temp and PRec values for NPDS sites
+# Get summary values for the seasonal temperature and precipitation values for NPDS sites
 NPDB.Clim <- data.frame(TempNPD,
                         SDTempNPD[,-1],
                         PrecNPD[,-1],
@@ -128,6 +128,6 @@ names(NPDB.Clim)[-1] <- c(paste0("BslTempMn.",c("Sprg","Summ","Fall","Wint")),
 NPDB.Clim <- data.frame(NPDB[,c("ID1","SITE", "DBCODE", "SITECODE", "SITENAME", "LONDD", "LATDD")],
                         NPDB.Clim)
 
-# Save the CRU.TS climate for the North American Pollen Data Base
+# Save the climate (mean and SD) for the North American Pollen Data
 write.csv(NPDB.Clim,
           "./Data/PaleoClimate/Processed/NPDB_Clim.csv")
