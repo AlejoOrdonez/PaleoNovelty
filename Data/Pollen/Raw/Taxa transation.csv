@@ -1,0 +1,135 @@
+Original,Translate Level,PLANTS,Translated,Full name,GF,With Traits
+ABIES,Genus,Abies,Abies,Abies - Fir,Tree,G
+ACNEGUNA,Genus,Acer,Acer,Acer negundo - Box Elder,Tree/Shrub,G
+ACPENSYL,Genus,Acer,Acer,Acer pensylvanicum - Striped Maple,Tree/Shrub,G
+ACRUBRUM,Genus,Acer,Acer,Acer rubrum - Red Maple,Tree/Shrub,G
+ACSACNUM,Genus,Acer,Acer,Acer saccharinum - Silver Maple,Tree/Shrub,G
+ACSACRUM,Genus,Acer,Acer,Acer saccharum - Sugar Maple,Tree/Shrub,G
+ACERX,Genus,Acer,Acer,Acer - Maple ,Tree/Shrub,G
+ALCRISPA,Genus,Alnus,Alnus,Alnus crispa - Mountain Alder,Tree,G
+ALRUBRA,Genus,Alnus,Alnus,Alnus rubra - Red Alder,Tree,G
+ALRUGOSA,Genus,Alnus,Alnus,Alnus rugosa - Speckled Alder,Tree,G
+ALNUSX,Genus,Alnus,Alnus,Alnus - Alder ,Tree,G
+AMBROSIA,Genus,Ambrosia,Ambrosia.type,Ambrosia - Ragweed ,Herb,
+AMORPHA,Genus,Amorpha,Amorpha,Amorpha - Leadplant,Shrub,
+ANACARDI,Family,Anacardiaceae,Anacardiaceae,Anacardiaceae - Sumac Family,Tree,F
+APIACEAE,Family,Apiaceae,Apiaceae,Apiaceae - Celery Family,Herb,
+AQUIFOLI,Family,Aquifoliaceae,Aquifoliaceae.undiff,Aquifoliaceae - Holly Family,Tree,F
+ARCEUTHOBI,,,,Arceuthobium -  Mistletoe,,
+ARECACEAE,Family,Arecaceae,Arecaceae,Arecaceae - Palm Family,Tree/Shrub/Herb,F
+ARMERIA,,,,Armeria - Thrift,,
+ARTEMISIA,Genus,Artemisia,Artemisia,"Artemisia - Sagebrush, Wormwood",Herb,
+ASTERX,Family,Asteraceae,Asteraceae.undiff,Asteraceae - Daisy tribe,Herb,
+ASTERCICHO,Family,Asteraceae,Asteraceae.undiff,Asteraceae subf. Cichorioideae -  Dandelion tribe,Herb,
+BETULA,Genus,Betula,Betula,Betula - Birch ,Tree/Shrub,G
+BORAGINACEAE,Family,Boraginaceae,Boraginaceae,Boraginaceae - Borage Family,Tree/Shrub/Herb,F
+BOTRYCHIUM,,,,Botrychium - Grape Fern (spore),,
+BRASSICACEAE,Family,Brassicaceae,Brassicaceae,Brassicaceae - Mustard Family,Shrub/Herb,
+CACTACEAE,,,,Cactaceae - Cactus Family,,
+CAMPANULACEA,Family,Campanulaceae,Campanulaceae,Campanulaceae - Bluebells,Shrub/Herb,
+CAPRIFOLIA,Family,Caprifoliaceae,Caprifoliaceae.undiff,Caprifoliaceae - Honeysuckle Family,Shrub,
+CARYA,Genus,Carya,Carya,Carya - Hickory,Tree,G
+CARYOPHYLL,Family,Caryophyllaceae,Caryophyllaceae.undiff,Caryophyllaceae - Chickweed Family,Herb,
+CASTANEA,Genus,Castanea,Castanea,Castanea - Chestnut,Tree/Shrub,G
+CEANOTHUS,,,,Ceanothus - New Jersey Tea,,
+CELTIS,Genus,Celtis,Celtis,Celtis - Hackberry,Tree,G
+CEPHALANTH,Genus,Cephalanthus,Cephalanthus,Cephalanthus - Button Bush,Shrub,
+CERCOCAR,,,,Cercocarpus - Mahogany ,,
+CHENOAMX,Family,Chenopodiaceae.Amaranthaceae,Chenopodiaceae.Amaranthaceae,Chenopodiaceae/Amaranthaceae - Goosefoot/Pigweed Families,Shrub/Herb,
+CHRYSOLEP,,,,Chrysolepis/Lithocarpus - Chinquapin ,,
+CORNUS,Genus,Cornus,Cornus,Cornus - Dogwood,Tree/Shrub/Herb,G
+CORYLUS,Genus,Corylus,Corylus,Corylus - Hazel,Tree/Shrub,
+CUPRESSA,Family,Cupressaceae,Cupressaceae.Taxaceae.undiff,Cupressaceae - Cedar Family,Tree/Shrub,F
+CYPERACE,Family,Cyperaceae,Cyperaceae,Cyperaceae - Sedge,Herb,
+DODECATH,,,,Dodecatheon - Shooting Star,,
+DRYAS,Genus,Dryas,Dryas,Dryas - Mountain Avens,Shrub,
+ELAEAGNX,Family,Elaeagnaceae,Elaeagnaceae.undiff,Elaeagnaceae - Oleaster Family,Tree/Shrub,
+EPHEDRA,Genus,Ephedra,Ephedra,Ephedra - Mexican Tea,Shrub,
+EQUISETU,,,,Equisetum - Horsetails (spore),,
+ERILEDCH,Family,Ericaceae,Ericaceae.undiff,Ericaceae Chamaedaphne/Ledum - Leather Leaf/Labrador Tea,Shrub/Herb,F
+ERIVACCI,Family,Ericaceae,Ericaceae.undiff,Ericaceae Vaccinium - Blueberry,Shrub/Herb,F
+ERICACEX,Family,Ericaceae,Ericaceae.undiff,Ericaceae - Heath Family,Shrub/Herb,F
+ERICALES,,,,Ericales - Ericales Order,,
+ERIOGONUM,Genus,Eriogonum,Eriogonum,Eriogonum - Buckwheat,Shrub/Herb,
+EUPHORB,Family,Euphorbiaceae,Euphorbiaceae,Euphorbiaceae - Spurge Family,Shrub/Herb,F
+FABACEAE,Family,Fabaceae,Fabaceae.undiff,Fabaceae - Pea Family,Tree/Shrub/Herb,F
+FAGUS,Genus,Fagus,Fagus,Fagus - Beech,Tree,G
+FRAXNIGR,Genus,Fraxinus,Fraxinus,Fraxinus nigra - Black Ash,Tree,G
+FRAXPNAM,Genus,Fraxinus,Fraxinus,Fraxinus pennsylvanica/americana - White/Green Ash,Tree,G
+FRAXINUX,Genus,Fraxinus,Fraxinus,Fraxinus - Ash ,Tree,G
+IVA,Genus,Iva,Iva,Iva - Marsh Elder ,Shrub/Herb,
+JUGCINER,Genus,Juglans,Juglans,Juglans Cinerea - Butternut,Tree,G
+JUGNIGRA,Genus,Juglans,Juglans,Juglans Nigra - Balck Walnut,Tree,G
+JUGLANSX,Genus,Juglans,Juglans,Juglans -  Walnut Family,Tree,G
+KOENISLD,Genus,Koenigia,Koenigia,Koenigia islandica - in Polygonaceae,Herb,
+LAMIACEAE,Family,Lamiaceae,Lamiaceae.undiff,Lamiaceae - Mint Family,Herb,
+LARIXPSEU,Genus,Larix,Larix,Larix/Pseudotsuga - Larch/Douglas Fir ,Tree,G
+LARREA,,,,Larrea - Creosote Family,,
+LILIACEAE,Family,Liliaceae,Liliaceae,Liliaceae - Lily Family,Shrub/Herb,
+LIQUIDAM,Genus,Liquidambar,Liquidambar,Liquidambar - Sweet Gum,Tree,G
+LIRIODEN,Genus,Liriodendron,Liriodendron,Liriodendron - Tulip Tree,Tree,G
+LYCOANNO,,,,Lycopodium annotinum - Club moss,,
+LYCOCLAV,,,,Lycopodium clavatum - Club moss,,
+LYCOCOMP,,,,Lycopodium complanatum - Club moss,,
+LYCOSELA,,,,Lycopodium selago - Club moss,,
+LYCOPODX,,,,Lycopodium undifferentiated - Club moss,,
+MAGNOLIACE,,,,Magnoliaceae - Umbrella Tree Family ,,
+MALVACEAE,Family,Malvaceae,Malvaceae.undiff,Malvaceae - Mallow Family,Shrub/Herb,F
+MORACEAX,Family,Moraceae,Moraceae,Moraceae - Mulberry Family ,Tree/Shrub,F
+MYRICACX,Family,Myricaceae,Myricaceae,Myricaceae - Myrtle Family ,Shrub,
+NYSSA,Genus,Nyssa,Nyssa,Nyssa - Sour Gum,Tree/Shrub,G
+ONAGRACEAE,Family,Onagraceae,Onagraceae.undiff,Onagraceae - Evening Primerose Family,Herb,
+OSMUNDACEA,,,,Osmundaceae - Royal Fern Family ,,
+OSTRYCAR,Genus,Carpinus,Ostrya.Carpinus,"Ostrya/Carpinus - Hop/Hornbeam, Ironwood",Tree,G
+OXYRIA,,,,Oxyria - Mountain Sorrel,,
+PAPAVERX,,,,Papaveraceae - Poppy Family,,
+PEDICULARI,,,,Pedicularis - Louse Wort,,
+PICGLAUC,,,,Picea glauca - White Spruce,,
+PICMARIA,,,,Picea mariana - Black Spruce,,
+PICEAX,Genus,Picea,Picea,Picea - Spruce ,Tree,G
+PINDIPLO,Genus,Pinus,Pinus.subg.Pinus,Pinus diploxylon - Hard Pines,Tree/Shrub,G
+PINHAPLO,Genus,Pinus,Pinus.subg.Strobus,Pinus haploxylon - Soft Pines,Tree/Shrub,G
+PINUSX,Genus,Pinus,Pinus.undiff,Pinus - Pine undifferentiated,Tree/Shrub,G
+PLANTAGINX,Family,Plantaginaceae,Plantaginaceae,Plantaginaceae - Plantain Family,Herb,
+PLATANUS,Genus,Platanus,Platanus,Platanus - Sycamore,Tree,G
+POACEAE,Family,Poaceae,Poaceae,Poaceae - Grass ,Herb,
+POLEMONI,Family,Polemoniaceae,Polemoniaceae,Polemoniaceae - Phlox Family,Herb,
+POLYGONAX,Family,Polygonaceae,Polygonaceae.undiff,Polygonaceae - Buckwheat undifferentiated,Tree/Shrub/Herb,F
+POLYGBIS,Genus,Polygonum,Polygonum,Polygonum bistortoides,Shrub/Herb,
+POLYGONMX,Genus,Polygonum,Polygonum,Polygonum undifferentiated - Knotweed,Shrub/Herb,
+POLYGVIV,Genus,Polygonum,Polygonum,Polygonum viviparum - Bistort,Shrub/Herb,
+POLYPOD,,,,Polypodiaceae - Fern Family ,,
+POPULUS,Genus,Populus,Populus,"Populus - Poplar, Aspen",Tree,G
+POTENTILLA,Genus,Potentilla,Potentilla,Potentilla - Cinquefoil,Herb,
+PROSOPIS,,,,Prosopis - Mesquite,,
+PTERIDIUM,,,,Pteridium - Bracken (fern),,
+QUERCUS,Genus,Quercus,Quercus,Quercus - Oak,Tree,G
+RANUNCUL,Family,Ranunculaceae,Ranunculaceae.undiff,Ranunculaceae - Buttercup Family,Herb,
+RHAMNACEAE,Family,Rhamnaceae,Rhamnaceae,Rhamnaceae/Vitaceae - Buckthorn/Grape,Shrub,F
+ROSACEAX,Family,Rosaceae,Rosaceae.undiff,Rosaceae - Rose Family,Shrub/Herb,F
+RUBIACEAE,Family,Rubiaceae,Rubiaceae.undiff,Rubiaceae - Bedstraw Family,Tree/Shrub/Herb,
+RUBUS,,,,"Rubus - Raspberry, Cloudberry",,
+RUMEX,,,,Rumex - Sorrel,,
+RUMEOXYR,Genus,Rumex,Rumex.Oxyria,Rumex/Oxyria - Sorrel/Mountainsorrel,Herb,
+SALIX,Genus,Salix,Salix,Salix - Willow,Tree/Shrub,G
+SANGUI,Genus,Sanguisorba,Sanguisorba,Sanguisorba - American Burnet,Herb,
+SARCOBATUS,Genus,Sarcobatus,Sarcobatus,Sarcobatus - Greasewood,Shrub,
+SXFRACER,Family,Saxifragaceae,Saxifragaceae,Saxifraga cernua - Nodding Saxifrage ,Herb,
+SXFRAHIE,Family,Saxifragaceae,Saxifragaceae,Saxifraga hieracifolia,Herb,
+SXFRAOPP,Family,Saxifragaceae,Saxifragaceae,Saxifraga oppositifolia - Purple Saxifrage,Herb,
+SXFRATRI,Family,Saxifragaceae,Saxifragaceae,Saxifraga tricuspidata - Prickled Saxifrage,Herb,
+SXFRAGAX,Family,Saxifragaceae,Saxifragaceae,Saxifragaceae - Saxifrage Family,Herb,
+SCROPHUL,Family,Scrophulariaceae,Scrophulariaceae,Scrophulariaceae - Figwort Family,Tree/Shrub/Herb,
+SELAGINE,,,,Selaginella -Club moss,,
+SHEPHERDIA,Genus,Shepherdia,Shepherdia,Shepherdia canadensis - Soapberry,Tree/Shrub,
+SPHAGNUM,,,,Sphagnum - Peat moss,,
+TAXODIUM,Genus,Taxodium,Taxodium,Taxodium - Cypress,Tree,G
+TAXUS,Genus,Taxus,Taxus,Taxus - Yew,Tree/Shrub,G
+THALICTRUM,Genus,Thalictrum,Thalictrum,Thalictrum - Meadow Rue,Herb,
+TILIA,Genus,Tilia,Tilia,Tilia - Basswood,Tree,G
+TSUGHETE,Genus,Tsuga,Tsuga,Tsuga heterophylla - Western Hemlock,Tree,G
+TSUGMERT,Genus,Tsuga,Tsuga,Tsuga mertensiana - Mountain Hemlock,Tree,G
+TSUGAX,Genus,Tsuga,Tsuga,Tsuga - Hemlock unifferentiated,Tree,G
+ULMUS,Genus,Ulmus,Ulmus,Ulmus - Elm,Tree,G
+URTICACX,Family,Urticaceae,Urticaceae,Urticaceae - Nettle Family ,Shrub/Herb,
+XANTHIUM,Genus,Xanthium,Xanthium,Xanthium - Cocklebur types,Herb,
