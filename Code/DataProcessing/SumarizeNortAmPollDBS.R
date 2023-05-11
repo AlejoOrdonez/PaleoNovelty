@@ -64,7 +64,7 @@ BiomeNPD <- extract(BIOMES[,"BIOME"],
 BiomeNPD$BIOME[c(is.na(BiomeNPD$BIOME))] <- 100
 
 # Create a new aggregated North American Pollen Data Base
-NPDBAgg <- data.frame(NPDB[which(!is.na(apply(SummNPDB2,1,sum))),c("ID1","SITENAME","LONDD","LATDD","ELEVATION")],
+NPDBAgg <- data.frame(NPDB[which(!is.na(apply(SummNPDB2,1,sum))),c("ID1","SITE", "DBCODE", "SITECODE", "SITENAME", "LONDD", "LATDD","ELEVATION")],
                       BIOME  = BiomesNames$Name[c(match(BiomeNPD[,2],BiomesNames$code))],
                       SummNPDB3)
 # Remove the sites located in Rock/ice, Lake/River, or Ocean.

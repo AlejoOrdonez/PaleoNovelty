@@ -125,9 +125,10 @@ names(NPDB.Clim)[-1] <- c(paste0("BslTempMn.",c("Sprg","Summ","Fall","Wint")),
                           paste0("BslTempSd.",c("Sprg","Summ","Fall","Wint")),
                           paste0("BslPrecMn.",c("Sprg","Summ","Fall","Wint")),
                           paste0("BslPrecSd.",c("Sprg","Summ","Fall","Wint")))
-NPDB.Clim <- data.frame(NPDB[,c("ID1","SITE", "DBCODE", "SITECODE", "SITENAME", "LONDD", "LATDD")],
-                        NPDB.Clim)
+NPDB.Clim <- data.frame(NPDB[,c("ID1","SITE", "DBCODE", "SITECODE", "SITENAME", "LONDD", "LATDD","ELEVATION")],
+                        NPDB.Clim[,-1])
 
+NPDB.Clim <- NPDB.Clim[complete.cases(NPDB.Clim),]
 # Save the climate (mean and SD) for the North American Pollen Data
 write.csv(NPDB.Clim,
           "./Data/PaleoClimate/Processed/NPDB_Clim.csv")

@@ -28,4 +28,4 @@ NEATOMA2 <- data.frame(NEATOMA.ALL[, c("Time","Clim.ID","sites","Latitude","Long
                        NEATOMA1)
 
 # Sate the aggregated and curated file
-write.csv(NEATOMA2,"./Data/Pollen/Processed/NPDB_Agg.csv")
+write.csv(NEATOMA2,"./Data/Pollen/Processed/NEATOMA_Agg.csv")
