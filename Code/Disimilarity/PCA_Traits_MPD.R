@@ -140,18 +140,28 @@ BootTraits <- lapply(1:100,
                                                                            })
                                                              min(out,na.rm=T)
                                                            })
+                       NEATOMA.Agg$minSCDToPres <- do.call("c",PaleoToPresentTraitDist)
                        sfStop()
                        Sys.time()-SrtTime
                        ####
                        ####
                        # Summary fo distances per Time 
-                       Out.list <- list(DataFrm = data.frame(Time=-21:-1,
-                                                             MPDDist = rev(tapply(do.call("c",PaleoToPresentTraitDist),
-                                                                                  NEATOMA.Agg$Time,
-                                                                                  median,
-                                                                                  na.rm=T))),
-                                        RocTresh = TraitMPDDist.ROC)
+                       Out.list <- list(NEATOMA.CommDis = NEATOMA.Agg[,-c(1,7:45)],
+                                        ROC.Cutoff = TraitMPDDist.ROC)
                        return(Out.list)
                      })
 Sys.time()-SrtTime1
 saveRDS(BootTraits,"./Results/BootPCoATraitsMPD.rds")
+
+BootPCoATraitsMPD <- readRDS("./Results/BootPCoATraitsMPD.rds")
+
+TraitsMPDBoot <- lapply(BootPCoATraitsMPD,
+                        function(x){
+                          x[[1]][,2]
+                        })
+
+TraitsMPDBoot <- apply(do.call("cbind",TraitsMPDBoot),1,median)
+
+plot(x=BootPCoATraitsMPD[[1]][[1]][,1],
+     y=TraitsMPDBoot,
+     type="b")
