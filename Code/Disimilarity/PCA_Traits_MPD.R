@@ -153,15 +153,51 @@ BootTraits <- lapply(1:100,
 Sys.time()-SrtTime1
 saveRDS(BootTraits,"./Results/BootPCoATraitsMPD.rds")
 
-BootPCoATraitsMPD <- readRDS("./Results/BootPCoATraitsMPD.rds")
+BootTraits <- readRDS("./Results/BootPCoATraitsMPD.rds")
 
-TraitsMPDBoot <- lapply(BootPCoATraitsMPD,
-                        function(x){
-                          x[[1]][,2]
-                        })
 
-TraitsMPDBoot <- apply(do.call("cbind",TraitsMPDBoot),1,median)
+TraitsMPD <- lapply(BootTraits,
+                    function(x){
+                      x[[1]][,"minSCDToPres"]
+                    })
 
-plot(x=BootPCoATraitsMPD[[1]][[1]][,1],
-     y=TraitsMPDBoot,
-     type="b")
+TraitsMPD <- data.frame(BootTraits[[1]][[1]][,1:5],
+                        t(apply(do.call("cbind",TraitsMPD),
+                                1,
+                                quantile,
+                                c(0.0275,0.5,0.975)))
+)
+
+
+
+# Dummy plot (taking a even sub sample of sites across periods)
+CompDisBoot <- lapply(1:1000,
+                      function(i){
+                        SamplTmp <- do.call("c",lapply(1:21,
+                                                       function(x){
+                                                         sample(which(TraitsMPD$Time==x), 10)
+                                                       }))
+                        tapply(TraitsMPD$X50.[SamplTmp],
+                               TraitsMPD$Time[SamplTmp],
+                               median)
+                      })
+
+CompDisBoot2 <- do.call("rbind",CompDisBoot)
+CompDisBootQuant <- apply(CompDisBoot2,2,quantile,c(0.0275,0.5,0.975))
+plot(y = rev(CompDisBootQuant[2,]),
+     x = -21:-1,
+     type = "b",
+     main = "Regional Dissimilarity Trait Change", 
+     xlab ="Time (kyrBP)",
+     ylab = "Disimilarity (Sqr Cord Dist)",
+     ylim=range(CompDisBootQuant))
+lines(y = rev(CompDisBootQuant[1,]),
+      x = -21:-1,)
+lines(y = rev(CompDisBootQuant[3,]),
+      x = -21:-1,)
+
+
+abline(h=median(sapply(BootTraits,
+                       function(x){
+                         x[[2]]$roc$ Combined$ optima
+                       })))
