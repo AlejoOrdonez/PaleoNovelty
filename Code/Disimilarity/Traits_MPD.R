@@ -21,64 +21,60 @@ NPDB.Pollen <- NPDB.Pollen[c(NPDB.Pollen$ID1%in%NPDB.SiteUse),]
 NEATOMA.Agg <- read.csv("./Data/Pollen/Processed/NEATOMA_Agg.csv")
 
 # Which taxa to use - ensure match between NPDS and NEATOMA
-TaxaUse <- table(c(names(NEATOMA.Agg[,-c(1:6)]),names(NPDB.Pollen[,-c(1:10)])))
-TaxaUse <- names(TaxaUse)[TaxaUse==2]
+TaxaUseObs <- table(c(names(NEATOMA.Agg[,-c(1:6)]),names(NPDB.Pollen[,-c(1:10)])))
+TaxaUseObs <- names(TaxaUseObs)[TaxaUseObs==2]
 #####
-
-#####
-# Load the trait data
-Traits <- read.csv2("./Data/Traits/Raw/TraitsSummary.csv")
-Traits <- Traits[c(Traits$Name%in%TaxaUse),]
-# Seeds 
-SWT <- apply(Traits[,c("Min..of.Seed.Size..mg.","Max..of.Seed.Size..mg.")],
-             1,
-             function(x){
-               ifelse(is.na(x[1]),
-                            NA,
-                            runif(1,log10(x[1]),log10(x[2])))
-               })
-SWT <- scale(SWT)
-
-# Height
-Hmax <- apply(Traits[,c("Min..of.Height..m.","Max..of.Height..m.")],
-              1,
-              function(x){
-                ifelse(is.na(x[1]),
-                       NA,
-                       runif(1,x[1],x[2]))
-                })
-Hmax <- scale(Hmax)
-# LMA
-LMA <- apply(Traits[,c("Min..of.LMA..log...g.m2.","Max..of.LMA..log...g.m2.")],
-             1,
-             function(x){
-               ifelse(is.na(x[1]),
-                      NA,
-                      runif(1,x[1],x[2]))
-             })
-LMA <- scale(LMA)
-
-# Build a trait dataset
-TraitsDBS <- data.frame(SWT = SWT,
-                        Hmax = Hmax,
-                        LMA = LMA)
-row.names(TraitsDBS) <- Traits$Name
-TraitsDBS <- TraitsDBS[complete.cases(TraitsDBS),]
-# Which taxa to use - ensure match between NPDS and NEATOMA and TRAITS
-TaxaUse <- row.names(TraitsDBS)
-# Estimate the Trait distance in RAW Space                       
-TraitsDist <- as.matrix(dist(TraitsDBS))
-#####
-
 
 #######################################################################################################################
-#####
-# Load the North American Pollen Data Base and its translation to the Paleo data
-# raw NPDB
+
 SrtTime1 <- Sys.time()
 BootTraits <- lapply(1:100,
                      function(RunIt){
+                       # Generate a possible trait realization based on the know distribution of values for a evaluated taxa
+                       # Load the trait data
+                       Traits <- read.csv2("./Data/Traits/Raw/TraitsSummary.csv")
+                       Traits <- Traits[c(Traits$Name%in%TaxaUseObs),]
+                       # Seeds 
+                       SWT <- apply(Traits[,c("Min..of.Seed.Size..mg.","Max..of.Seed.Size..mg.")],
+                                    1,
+                                    function(x){
+                                      ifelse(is.na(x[1]),
+                                             NA,
+                                             runif(1,log10(x[1]),log10(x[2])))
+                                    })
+                       SWT <- scale(SWT)
                        
+                       # Height
+                       Hmax <- apply(Traits[,c("Min..of.Height..m.","Max..of.Height..m.")],
+                                     1,
+                                     function(x){
+                                       ifelse(is.na(x[1]),
+                                              NA,
+                                              runif(1,x[1],x[2]))
+                                     })
+                       Hmax <- scale(Hmax)
+                       # LMA
+                       LMA <- apply(Traits[,c("Min..of.LMA..log...g.m2.","Max..of.LMA..log...g.m2.")],
+                                    1,
+                                    function(x){
+                                      ifelse(is.na(x[1]),
+                                             NA,
+                                             runif(1,x[1],x[2]))
+                                    })
+                       LMA <- scale(LMA)
+                       
+                       # Build a trait dataset
+                       TraitsDBS <- data.frame(SWT = SWT,
+                                               Hmax = Hmax,
+                                               LMA = LMA)
+                       row.names(TraitsDBS) <- Traits$Name
+                       TraitsDBS <- TraitsDBS[complete.cases(TraitsDBS),]
+                       # Which taxa to use - ensure match between NPDS and NEATOMA and TRAITS
+                       TaxaUse <- table(c(TaxaUseObs,row.names(TraitsDBS)))
+                       TaxaUse <- names(TaxaUse)[TaxaUse==2]
+                       # Estimate the Trait distance in RAW Space                       
+                       TraitsDist <- as.matrix(dist(TraitsDBS[TaxaUse,]))
+                       #####
                        #####
                        # Build a species names per site for the NPDS
                        SppPerSiteNPDB <- apply(NPDB.Pollen[,TaxaUse],
@@ -91,7 +87,7 @@ BootTraits <- lapply(1:100,
                        sfExport("SppPerSiteNPDB")
                        sfExport("TraitsDist")
                        #SrtTime<-Sys.time()
-                       MPDBaseline <- lapply(SppPerSiteNPDB,
+                       MPDBaseline <- sfLapply(SppPerSiteNPDB,
                                              function(i){
                                                sapply(SppPerSiteNPDB,
                                                       function(x){
@@ -121,7 +117,7 @@ BootTraits <- lapply(1:100,
                        #####
 
                        #####
-                       # Estimate distance to each paleo assemblage
+                       # Estimate distance of paleo assemblage to the NPDB
                        sfInit( parallel=TRUE, cpus=10)
                        sfExport("SppPerSiteNPDB")
                        sfExport("PollenSppSiteNames")
@@ -133,9 +129,9 @@ BootTraits <- lapply(1:100,
                                                                          function(x){
                                                                            mean(TraitsDist[i,x],na.rm=T)
                                                                          })
-                                                           min(out,na.rm=T)
+                                                           min(out,na.rm=T) # Only keep the Min Distance
                                                          })
-                       NEATOMA.Agg$minSCDToPres <- do.call("c",PaleoToPresentTraitDist)
+                       NEATOMA.Agg$minSCDToPres <- do.call("c",PaleoToPresentTraitDist) # Add the Min distance to the Agg NEATOMA DATA
                        sfStop()
                        #Sys.time()-SrtTime
                        ####
@@ -155,7 +151,7 @@ TraitsMPD <- lapply(BootTraits,
                     function(x){
                       x[[1]][,"minSCDToPres"]
                     })
-
+# Estimate the Variability in estimates per Trait space iteration 
 TraitsMPD <- data.frame(BootTraits[[1]][[1]][,1:5],
                         t(apply(do.call("cbind",TraitsMPD),
                                 1,
