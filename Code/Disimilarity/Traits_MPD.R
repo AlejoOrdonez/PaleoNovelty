@@ -88,12 +88,12 @@ BootTraits <- lapply(1:100,
                        sfExport("TraitsDist")
                        #SrtTime<-Sys.time()
                        MPDBaseline <- sfLapply(SppPerSiteNPDB,
-                                             function(i){
-                                               sapply(SppPerSiteNPDB,
-                                                      function(x){
-                                                        mean(TraitsDist[i,x])
-                                                      })
-                                             })
+                                               function(i){
+                                                 sapply(SppPerSiteNPDB,
+                                                        function(x){
+                                                          mean(TraitsDist[i,x])
+                                                        })
+                                               })
                        MPDBaseline <- do.call("rbind",MPDBaseline)
                        sfStop()
                        #Sys.time()-SrtTime
@@ -104,7 +104,7 @@ BootTraits <- lapply(1:100,
                        # Estimate the distance between NPDB sites Removing non biome sites and biomes with only one observation
                        TraitMPDDist.ROC <- roc(MPDBaseline, # current time Taxon data.frame 
                                                groups = NPDB.Pollen$BIOME # vector of group memberships
-                                               )
+                       )
                        TraitMPDDist.ROC
                        #####
                        
@@ -113,9 +113,9 @@ BootTraits <- lapply(1:100,
                        PollenSppSiteNames <- apply(NEATOMA.Agg[,TaxaUse],
                                                    1,
                                                    function(x){TaxaUse[x>0]
-                                                     })
+                                                   })
                        #####
-
+                       
                        #####
                        # Estimate distance of paleo assemblage to the NPDB
                        sfInit( parallel=TRUE, cpus=10)
@@ -124,13 +124,13 @@ BootTraits <- lapply(1:100,
                        sfExport("TraitsDist")
                        #SrtTime<-Sys.time()
                        PaleoToPresentTraitDist <- sfLapply(PollenSppSiteNames,
-                                                         function(i){
-                                                           out <- sapply(SppPerSiteNPDB,
-                                                                         function(x){
-                                                                           mean(TraitsDist[i,x],na.rm=T)
-                                                                         })
-                                                           min(out,na.rm=T) # Only keep the Min Distance
-                                                         })
+                                                           function(i){
+                                                             out <- sapply(SppPerSiteNPDB,
+                                                                           function(x){
+                                                                             mean(TraitsDist[i,x],na.rm=T)
+                                                                           })
+                                                             min(out,na.rm=T) # Only keep the Min Distance
+                                                           })
                        NEATOMA.Agg$minSCDToPres <- do.call("c",PaleoToPresentTraitDist) # Add the Min distance to the Agg NEATOMA DATA
                        sfStop()
                        #Sys.time()-SrtTime
@@ -144,49 +144,52 @@ BootTraits <- lapply(1:100,
 
 saveRDS(BootTraits,"./Results/BootTraitsMPD.rds")
 
+
+
+# Load and plot the MPD for traits
+rm(list=ls());gc()
+require(snowfall)
+setwd("~/Library/CloudStorage/Dropbox/Aarhus Assistant Professor/Projects/3. Ecography PaleoTraits Paper/PaleoNovelty")
+
 BootTraits <- readRDS("./Results/BootTraitsMPD.rds")
 
 
-TraitsMPD <- lapply(BootTraits,
-                    function(x){
-                      x[[1]][,"minSCDToPres"]
-                    })
 # Estimate the Variability in estimates per Trait space iteration 
-TraitsMPD <- data.frame(BootTraits[[1]][[1]][,1:5],
-                        t(apply(do.call("cbind",TraitsMPD),
-                                1,
-                                quantile,
-                                c(0.0275,0.5,0.975)))
-                        )
-                        
+sfInit( parallel=TRUE, cpus=10)
+sfExport("BootTraits")
 
+TraitsMPDVar <- sfLapply(BootTraits,
+                       function(x){#x<-BootTraits[[3]]
+                         TraitsMPD <- x$NEATOMA.CommDis
+                         MeanMPD <- lapply(1:1000,
+                                           function(j){
+                                           tapply(TraitsMPD$minSCDToPres[do.call("c",lapply(21:1,function(i){sample(which(TraitsMPD$Time==i),10)}))],
+                                                  TraitsMPD$Time[do.call("c",lapply(21:1,function(i){sample(which(TraitsMPD$Time==i),10)}))],
+                                                  median)})
+                         MeanMPD <- do.call("cbind",
+                                            MeanMPD)
+                         Out <- data.frame(Time = 1:21,
+                                           t(apply(MeanMPD,1,quantile, c(0.025,0.5,0.975))))
+                         return(Out)
+                       })
+sfStop()
 
-# Dummy plot (taking a even sub sample of sites across periods)
-CompDisBoot <- lapply(1:1000,
-                      function(i){
-                        SamplTmp <- do.call("c",lapply(1:21,
-                                                       function(x){
-                                                         sample(which(TraitsMPD$Time==x), 10)
-                                                       }))
-                        tapply(TraitsMPD$X50.[SamplTmp],
-                               TraitsMPD$Time[SamplTmp],
-                               median)
-                      })
+TraitsMPD <- data.frame(Time = 1:21,
+                        X50 = apply(sapply(TraitsMPDVar,function(x){x$X50.}),1,median),
+                        X2.5 = apply(sapply(TraitsMPDVar,function(x){x$X2.5.}),1,median),
+                        X97.5 = apply(sapply(TraitsMPDVar,function(x){x$X97.5.}),1,median))
 
-CompDisBoot2 <- do.call("rbind",CompDisBoot)
-CompDisBootQuant <- apply(CompDisBoot2,2,quantile,c(0.0275,0.5,0.975))
-plot(y = rev(CompDisBootQuant[2,]),
+plot(y = rev(TraitsMPD$X50),
      x = -21:-1,
      type = "b",
      main = "Regional Dissimilarity Trait Change", 
      xlab ="Time (kyrBP)",
-     ylab = "Disimilarity (Sqr Cord Dist)",
-     ylim=range(CompDisBootQuant))
-lines(y = rev(CompDisBootQuant[1,]),
-      x = -21:-1,)
-lines(y = rev(CompDisBootQuant[3,]),
-      x = -21:-1,)
-
+     ylab = "MPD (Euclidean Dist)",
+     ylim = range(TraitsMPD[-1]))
+lines(y = rev(TraitsMPD$X2.5),
+      x = -21:-1)
+lines(y = rev(TraitsMPD$X97.5),
+      x = -21:-1)
 
 abline(h=median(sapply(BootTraits,
                        function(x){

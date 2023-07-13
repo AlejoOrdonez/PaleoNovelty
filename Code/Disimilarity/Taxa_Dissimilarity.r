@@ -65,9 +65,11 @@ NEATOMA.CommDis <- list(FullDisMatrix = DistToCurrent2,
                         NEATOMA.Agg = NEATOMA.Agg,
                         NPDB.Agg = NPDB.Pollen,
                         ROC.Cutoff = NPDS.ROC.Cutoff)
-saveRDS(NEATOMA.CommDis,"./Results/SQchord_TaxoDis.rds")
+#saveRDS(NEATOMA.CommDis,"./Results/SQchord_TaxoDis.rds")
 
 # Dummy plot (taking a even sub sample of sites across periods)
+NEATOMA.CommDis <- readRDS("./Results/SQchord_TaxoDis.rds")
+
 CompDisBoot <- lapply(1:1000,
                       function(i){
                         SamplTmp <- do.call("c",lapply(1:21,

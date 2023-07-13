@@ -108,8 +108,10 @@ NEATOMA.ClimDis <- list(FullDisMatrix = FullPaleoStdEucDis,
                         ROC.Cutoff = EnvTreshold.ROC)
 saveRDS(NEATOMA.ClimDis,"./Results/StdEuDis_ClimDis.rds")
 
-
 # Dummy plot (taking a even sub sample of sites across periods)
+NEATOMA.ClimDis <- readRDS("./Results/StdEuDis_ClimDis.rds")
+
+
 ClimDisBoot <- lapply(1:1000,
             function(i){
               SamplTmp <- do.call("c",lapply(1:21,

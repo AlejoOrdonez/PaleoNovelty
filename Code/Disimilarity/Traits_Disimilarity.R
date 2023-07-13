@@ -187,16 +187,29 @@ BootTraitsCWMONLy <- lapply(BootTraitsCWM,
                             function(x){x[[1]][,2]})
 
 
-plot(y=apply(do.call("rbind",BootTraitsCWMONLy),2,median),
-     x=-21:-1,
-     type="b",
-     ylab = "Eucludean Distance raw-CWM",
-     xlab = "Time (kyrBP)")
-
 BootTraitsCutoff <- sapply(BootTraitsCWM,
                            function(x){
                              x[[2]]$roc$Combined$optimal
                            })
+BootTraitsCutoff
+
+Out <- data.frame(LQt = apply(do.call("rbind",BootTraitsCWMONLy),2,quantile,0.0275),
+                  Med = apply(do.call("rbind",BootTraitsCWMONLy),2,median),
+                  UQt = apply(do.call("rbind",BootTraitsCWMONLy),2,quantile,0.975))
+
+
+plot(y=Out$Med,
+     x=-21:-1,
+     type="b",
+     main = "Regional Dissimilarity Trait Change", 
+     ylab = "Eucludean Distance raw-CWM",
+     xlab = "Time (kyrBP)",
+     ylim=c(0,0.15))
+lines(y=Out$LQt,
+      x=-21:-1)
+lines(y=Out$UQt,
+      x=-21:-1)
+
 abline(h=median(BootTraitsCutoff))
 
 
